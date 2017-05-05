@@ -1,32 +1,42 @@
 <?php
 class Car
 {
-	private static $speed = 100;
-	public static function getSpeed()
-	{
-		return self::$speed;
-	}
-
-	public static function speedUp()
-	{
-		return self::$speed += 10;
-	}
+	// 
 }
 
 $c1 = new Car();
-echo $c1::getSpeed();		// 100 调用静态方法
+$c2 = new Car();
 
-$func = 'getSpeed';
-$className = 'Car';
-echo $className::$func();	// 动态调用静态方法
+echo $c1==$c2 ? "==" : "!=";		// ==
+echo $c1===$c2 ? "===" : "!==";		// !==
 
-class bigCar extends Car
+echo "<hr />";
+
+class Truck
 {
-	public static function start()
+	public $name = "Truck";
+
+	public function __clone()
 	{
-		parent::speedUp();
+		$obj = new Truck();
+		$obj->name = $this->name;
 	}
 }
 
-echo bigCar::start();	// 使用 :: 调用静态方法
-echo $c1::getSpeed();	// 110
+$a = new Truck();
+$a->name = "new Truck";
+$b = clone $a;
+var_dump($b);
+
+echo "<hr/>";
+
+class Bike
+{
+	public $name = "自行车";
+}
+
+$bike = new Bike();
+$str = serialize($bike);
+var_dump($str);
+$str = unserialize($str);
+var_dump($str);

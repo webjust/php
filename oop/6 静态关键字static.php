@@ -18,15 +18,15 @@ echo $c1::getSpeed();		// 100 调用静态方法
 
 $func = 'getSpeed';
 $className = 'Car';
-echo $className::$func();	// 动态调用静态方法
+echo $className::$func();	// 100 动态调用静态方法
 
 class bigCar extends Car
 {
 	public static function start()
 	{
-		parent::speedUp();
+		return parent::speedUp();
 	}
 }
 
-echo bigCar::start();	// 使用 :: 调用静态方法
+echo bigCar::start();	// 110 使用 :: 调用静态方法
 echo $c1::getSpeed();	// 110
